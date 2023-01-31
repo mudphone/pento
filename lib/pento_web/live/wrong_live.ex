@@ -1,5 +1,5 @@
 defmodule PentoWeb.WrongLive do
-  use Phoenix.LiveView, layout: {PentoWeb.LayoutView, "live.html"}
+  use PentoWeb, :live_view
 
 
   def mount(_params, _session, socket) do
