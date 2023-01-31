@@ -3,7 +3,7 @@ defmodule PentoWeb.WrongLive do
 
 
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, score: 0, message: "Make a guess:")}
+    {:ok, assign(socket, score: 0, message: "Guess a number.")}
   end
 
 
@@ -11,6 +11,9 @@ defmodule PentoWeb.WrongLive do
     ~H"""
     <h1>Your score: <%= @score %></h1>
     <h2>
+      <p>
+        It's <%= time() %>
+      </p>
       <%= @message %>
     </h2>
     <h2>
@@ -19,6 +22,11 @@ defmodule PentoWeb.WrongLive do
       <% end %>
     </h2>
     """
+  end
+
+
+  defp time() do
+    DateTime.utc_now |> to_string
   end
 
 
