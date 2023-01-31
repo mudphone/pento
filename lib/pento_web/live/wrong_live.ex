@@ -15,9 +15,23 @@ defmodule PentoWeb.WrongLive do
     </h2>
     <h2>
       <%= for n <- 1..10 do %>
-        <a href="#" phx-click="guess" phx-value-number= {n} ><%= n %></a>
+        <a href="#" phx-click="guess" phx-value-number={n} ><%= n %></a>
       <% end %>
     </h2>
     """
+  end
+
+
+  def handle_event("guess", %{"number" => guess}=_data, socket) do
+    message = "Your guess: #{guess}. Wrong. Guess again. "
+    score = socket.assigns.score - 1
+    {
+      :noreply,
+      assign(
+        socket,
+        message: message,
+        score: score
+      )
+    }
   end
 end
