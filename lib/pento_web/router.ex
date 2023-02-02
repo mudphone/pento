@@ -1,4 +1,5 @@
 defmodule PentoWeb.Router do
+  alias PentoWeb.UserSettingsLive
   use PentoWeb, :router
 
   import PentoWeb.UserAuth
@@ -18,10 +19,12 @@ defmodule PentoWeb.Router do
   end
 
   scope "/", PentoWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
     live "/guess", WrongLive
+
+    live "/user/settings", UserSettingsLive
   end
 
   # Other scopes may use custom stacks.
