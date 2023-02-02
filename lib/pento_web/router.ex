@@ -21,10 +21,12 @@ defmodule PentoWeb.Router do
   scope "/", PentoWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    # get "/", PageController, :home
-    live "/guess", WrongLive
+    get "/", PageController, :home
 
-    live "/user/settings", UserSettingsLive
+    live_session :admin, root_layout: {PentoWeb.Layouts, "admin.html"} do
+      live "/guess-admin", WrongLive
+    end
+    live "/guess", WrongLive
   end
 
   # Other scopes may use custom stacks.
