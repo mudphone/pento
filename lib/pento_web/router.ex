@@ -24,7 +24,7 @@ defmodule PentoWeb.Router do
     get "/", PageController, :home
 
     live_session :admin,
-    root_layout: {PentoWeb.Layouts, "admin.html"},
+    root_layout: {PentoWeb.Layouts, :admin},
     on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
       live "/guess-admin", WrongLive
     end
