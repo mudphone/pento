@@ -1,10 +1,21 @@
 defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
 
+  on_mount {PentoWeb.UserAuth, :mount_current_user}
 
-  def mount(_params, _session, socket) do
+
+  def mount(_params, session, socket) do
     random_number = Enum.random(1..10)
-    {:ok, assign(socket, score: 0, message: "Guess a number.", answer: random_number)}
+    {
+      :ok,
+      assign(
+        socket,
+        score: 0,
+        message: "Guess a number.",
+        answer: random_number,
+        session_id: session["live_socket_id"]
+      )
+    }
   end
 
 
@@ -22,6 +33,11 @@ defmodule PentoWeb.WrongLive do
       <%= for n <- 1..10 do %>
         <a href="#" phx-click="guess" phx-value-number={n} ><%= n %></a>
       <% end %>
+
+      <pre>
+        <%= @current_user.email %>
+        <%= @session_id %>
+      </pre>
     </h2>
     """
   end
