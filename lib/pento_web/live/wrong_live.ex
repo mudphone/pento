@@ -1,8 +1,6 @@
 defmodule PentoWeb.WrongLive do
   use PentoWeb, :live_view
 
-  on_mount {PentoWeb.UserAuth, :mount_current_user}
-
 
   def mount(_params, session, socket) do
     random_number = Enum.random(1..10)

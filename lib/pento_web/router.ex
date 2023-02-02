@@ -23,10 +23,15 @@ defmodule PentoWeb.Router do
 
     get "/", PageController, :home
 
-    live_session :admin, root_layout: {PentoWeb.Layouts, "admin.html"} do
+    live_session :admin,
+    root_layout: {PentoWeb.Layouts, "admin.html"},
+    on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
       live "/guess-admin", WrongLive
     end
-    live "/guess", WrongLive
+    live_session :orgs,
+    on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
+      live "/guess", WrongLive
+    end
   end
 
   # Other scopes may use custom stacks.
