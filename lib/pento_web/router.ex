@@ -31,6 +31,7 @@ defmodule PentoWeb.Router do
     live_session :orgs,
     on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
       live "/guess", WrongLive
+      live "/promo", PromoLive
 
       live "/products", ProductLive.Index, :index
       live "/products/new", ProductLive.Index, :new
