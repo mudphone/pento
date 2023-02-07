@@ -5,6 +5,7 @@ defmodule PentoWeb.ProductLive.FormComponent do
 
   @impl true
   def render(assigns) do
+    IO.inspect(assigns.changeset.data)
     ~H"""
     <div>
       <.header>
@@ -25,9 +26,13 @@ defmodule PentoWeb.ProductLive.FormComponent do
         <.input field={{f, :unit_price}} type="number" label="Unit price" step="any" />
         <.input field={{f, :sku}} type="number" label="Sku" />
 
+        <%= if @changeset.data.image_upload do %>
+        <p><%= @changeset.data.image_upload %></p>
+        <% else %>
         <section phx-drop-target={ @uploads.image.ref }>
           <.live_file_input upload={@uploads.image}/>
         </section>
+        <% end %>
 
         <p>entries</p>
         <%= for entry <- @uploads.image.entries do %>
