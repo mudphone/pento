@@ -12,8 +12,8 @@
     phx-change="validate"
     phx-submit="save">
 
-    <.input field={{f, :first_name}} type="text" label="First Name" />
-    <.input field={{f, :email}} type="text" label="Email" />
+    <.input field={{f, :first_name}} type="text" label="First Name" phx-debounce="blur" />
+    <.input field={{f, :email}} type="text" label="Email" phx-debounce="2000" />
 
     <:actions>
       <.button phx-disable-with="Sending promo...">Send Promo</.button>
