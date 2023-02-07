@@ -19,9 +19,13 @@ defmodule PentoWeb.Router do
   end
 
   scope "/", PentoWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:browser]
 
     get "/", PageController, :home
+  end
+
+  scope "/", PentoWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
     live_session :admin,
     root_layout: {PentoWeb.Layouts, :admin},
