@@ -1,0 +1,23 @@
+<div class="survey-component-container">
+  <section class="row">
+    <h4><%= @product.name %></h4>
+  </section>
+  <section class="row">
+    <.simple_form
+      :let={f}
+      for={@changeset}
+      phx-change="validate"
+      phx-submit="save"
+      phx-target={@myself}
+      id={@id}>
+
+      <.input field={{f, :stars}} type="select" label="Stars" options={Enum.reverse(1..5)} />
+      <.input field={{f, :user_id}} type="hidden" />
+      <.input field={{f, :product_id}} type="hidden" />
+
+      <:actions>
+        <.button phx-disable-with="Saving...">Save</.button>
+      </:actions>
+    </.simple_form>
+  </section>
+</div>
