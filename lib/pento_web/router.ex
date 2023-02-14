@@ -31,6 +31,8 @@ defmodule PentoWeb.Router do
     root_layout: {PentoWeb.Layouts, :admin},
     on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
       live "/guess-admin", WrongLive
+
+      live "/admin-dashboard", Admin.DashboardLive
     end
     live_session :orgs,
     on_mount: [{PentoWeb.UserAuth, :mount_current_user}] do
